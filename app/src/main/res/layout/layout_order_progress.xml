@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
+    <View
+        android:id="@+id/view_progressBar"
+        android:background="@drawable/shape_blue_garden"
+        android:layout_width="15dp"
+        android:layout_height="15dp" />
+
+    <TextView
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/view_progressBar"
+        android:id="@+id/text_title"
+        android:text="派件失败，原因"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/defaultTextStyle" />
+    <TextView
+        android:layout_marginLeft="8dp"
+
+        android:layout_below="@id/text_title"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/view_progressBar"
+        android:id="@+id/text_date"
+        android:text="2017-03-06 "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13sp" />
+    <View
+        android:layout_below="@id/text_date"
+        android:id="@+id/view_space"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:visibility="visible" />
+    <View
+        android:layout_alignTop="@id/view_progressBar"
+        android:id="@+id/view_line"
+        android:background="@drawable/shape_blue_line_v"
+        android:layout_marginLeft="7dp"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/view_space" />
+</RelativeLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="@color/white"
+    android:id="@+id/layout_person">
+    <ImageView
+        android:layout_centerVertical="true"
+        android:src="@mipmap/orderdetails_icon_person_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_centerVertical="true"
+        style="@style/defaultTextStyle"
+        android:text="张你爸说"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_name"></TextView>
+
+    <ImageView
+        android:layout_marginLeft="100dp"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/orderdetails_icon_phone_n"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_marginLeft="120dp"
+        android:layout_centerVertical="true"
+        style="@style/defaultTextStyle"
+        android:text="1214132453"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_phone" />
+</RelativeLayout>

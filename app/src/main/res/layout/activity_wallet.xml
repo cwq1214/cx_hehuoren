@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15dp"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/bg_white_solid_angle"
+        android:padding="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@mipmap/wallet_icon_coin_n"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/defaultTextStyle"
+            android:layout_marginTop="25dp"
+            android:text="钱包余额（元）"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:textSize="50sp"
+            android:textColor="#4F4F4F"
+            android:text="1000.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_balance" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="25dp"
+        android:padding="15dp"
+        android:gravity="center"
+        android:background="@drawable/btn_blue_solid_angle"
+        android:textColor="@color/white"
+        android:text="提现"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_tixian"
+        android:textSize="15sp" />
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginTop="15dp"
+        android:padding="15dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/btn_blue_storke_transparent_solid_angle"
+        android:text="绑定提现账号"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_bangding" />
+</LinearLayout>

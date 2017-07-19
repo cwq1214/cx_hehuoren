@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/divider"
+    android:showDividers="beginning|end|middle"
+    >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"/>
+    <RelativeLayout
+        android:padding="15dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="快递公司"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:text="顺丰"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_company" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="支付方式"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorPrimary"
+            android:text="到付"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_payType" />
+    </RelativeLayout>
+    <RadioGroup
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/group_payType">
+        <RadioButton
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:button="@null"
+            android:background="@drawable/sel_choose_btn"
+            android:textColor="@drawable/sel_choose_text"
+            android:text="线上支付"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/rbtn_online" />
+        <RadioButton
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:button="@null"
+            android:background="@drawable/sel_choose_btn"
+            android:textColor="@drawable/sel_choose_text"
+            android:text="线下支付"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/rbtn_offline" />
+        <RadioButton
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:button="@null"
+            android:background="@drawable/sel_choose_btn"
+            android:textColor="@drawable/sel_choose_text"
+            android:text="到付"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/rbtn_cash" />
+    </RadioGroup>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="是否保价"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorPrimary"
+            style="@style/defaultTextStyle"
+            android:text="保价"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_keepValue" />
+    </RelativeLayout>
+    <RadioGroup
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:id="@+id/group_keepValue">
+        <RadioButton
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:button="@null"
+            android:background="@drawable/sel_choose_btn"
+            android:textColor="@drawable/sel_choose_text"
+            android:text="不保价"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/rbtn_notKeepValue" />
+        <RadioButton
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:button="@null"
+            android:background="@drawable/sel_choose_btn"
+            android:textColor="@drawable/sel_choose_text"
+            android:text="保价"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/rbtn_keepValue" />
+    </RadioGroup>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="其他费用(特殊包装)"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/defaultTextStyle" />
+
+        <EditText
+            android:id="@+id/input_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:inputType="numberDecimal"
+            android:minWidth="50dp"
+            android:singleLine="true"
+            android:text="请输入"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15sp" />
+        <TextView
+            android:textColor="@color/colorPrimary"
+            android:layout_toLeftOf="@id/input_cost"
+            android:text="¥"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/defaultTextStyle" />
+    </RelativeLayout>
+</LinearLayout>

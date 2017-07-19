@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:background="@color/white">
+            <TextView
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:text="身份证"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_right_angle_blue" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:id="@+id/img_idCardFace"
+                        android:layout_margin="15dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="#F1F1F1"
+                        android:src="@mipmap/bzj_icon_camera_n"
+                        android:scaleType="centerInside" />
+                    <TextView
+                        android:text="身份证正面"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img_idCardBack"
+                        android:layout_margin="15dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:background="#F1F1F1"
+                        android:src="@mipmap/bzj_icon_camera_n"
+                        android:scaleType="centerInside" />
+                    <TextView
+                        android:text="身份证正面"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+            <TextView
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:text="行驶证"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_right_angle_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_drivingPermit"
+                    android:background="#F1F1F1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:src="@mipmap/bzj_icon_camera_n"
+                    android:scaleType="centerInside" />
+                <TextView
+                    android:text="行驶证"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+            <TextView
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:text="驾驶证"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_right_angle_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_drivingLicense"
+                    android:background="#F1F1F1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:src="@mipmap/bzj_icon_camera_n"
+                    android:scaleType="centerInside" />
+                <TextView
+                    android:text="驾驶证"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp">
+            <TextView
+                android:textColor="@color/white"
+                android:padding="8dp"
+                android:text="与车辆正面合影"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_right_angle_blue" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_withCar"
+                    android:background="#F1F1F1"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="15dp"
+                    android:src="@mipmap/bzj_icon_camera_n"
+                    android:scaleType="centerInside" />
+                <TextView
+                    android:text="与车辆正面合影"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp"/>
+
+        <TextView
+            android:background="@color/colorPrimary"
+            android:textColor="@color/white"
+            android:text="提交"
+            style="@style/defaultBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_done" />
+
+    </LinearLayout>
+
+</ScrollView>

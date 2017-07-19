@@ -1,0 +1,102 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jyt.baseapp">
+
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!-- 用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!-- 访问网络，网络定位需要上网-->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <!-- SDK1.5需要android.permission.GET_TASKS权限判断本程序是否为当前运行的应用? -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- 来电消音 -->
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 摄影机 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/icon_144"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:name=".App"
+        android:theme="@style/AppTheme">
+
+        <!--百度地图 key-->
+            <meta-data
+                android:name="com.baidu.lbsapi.API_KEY"
+                android:value="kMHLPcbRSM6NIWGQ33c5rjNb4GxI282I" />
+
+        <activity android:name=".view.activity.LoginActivity" android:screenOrientation="portrait" android:label="登录" android:launchMode="singleTask"></activity>
+        <activity android:name=".view.activity.WelcomePageActivity" android:screenOrientation="portrait" android:label="城乡递">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+        <activity android:name=".view.activity.GuidePageActivity" android:screenOrientation="portrait" android:label="引导页"></activity>
+        <activity android:name=".view.activity.MainActivity" android:screenOrientation="portrait"  android:launchMode="singleTask"></activity>
+        <activity android:name=".view.activity.PersonalInfoActivity" android:screenOrientation="portrait" android:label="个人信息"/>
+        <activity android:name=".view.activity.DepositActivity" android:screenOrientation="portrait" android:label="保证金"/>
+        <activity android:name=".view.activity.DepositLevelActivity" android:screenOrientation="portrait" android:label="保证金等级"></activity>
+        <activity android:name=".view.activity.DepositAdjustActivity" android:screenOrientation="portrait" android:label="保证金调整"></activity>
+        <activity android:name=".view.activity.SendOrderDetailActivity" android:screenOrientation="portrait" android:label="派件订单详情"></activity>
+        <activity android:name=".view.activity.SendOrderActivity" android:screenOrientation="portrait" android:label="派件业务">
+
+        </activity>
+        <activity android:name=".view.activity.BankCardListActivity" android:screenOrientation="portrait" android:label="我的银行卡"></activity>
+        <activity android:name=".view.activity.PostBalanceActivity" android:screenOrientation="portrait" android:label="提现"></activity>
+        <activity android:name=".view.activity.WalletActivity" android:screenOrientation="portrait" android:label="钱包"></activity>
+        <activity android:name=".view.activity.BindCardActivity" android:screenOrientation="portrait" android:label="绑定账户"></activity>
+        <activity android:name=".view.activity.PaymentsDetailActivity"  android:screenOrientation="portrait" android:label="明细"></activity>
+        <activity android:name=".view.activity.PickUpOrderDetailActivity"  android:screenOrientation="portrait" android:label="收件订单详情"></activity>
+        <activity android:name=".view.activity.TrackOrderActivity"  android:screenOrientation="portrait" android:label="订单跟踪"></activity>
+        <activity android:name=".view.activity.EditAddressActivity" android:screenOrientation="portrait" android:label="编辑地址"></activity>
+        <activity android:name=".view.activity.GoodsDetailActivity" android:screenOrientation="portrait" android:label="物品信息"></activity>
+        <activity android:name=".view.activity.OrderDetailActivity"  android:screenOrientation="portrait" android:label="快递信息"></activity>
+        <activity android:name=".view.activity.SearchLocationActivity" android:screenOrientation="portrait" android:label="选择地址"></activity>
+        <activity android:name=".view.activity.SelLocationActivity" android:screenOrientation="portrait" android:label="选择地址"></activity>
+        <activity android:name=".view.activity.ShowLocationActivity"  android:screenOrientation="portrait" android:label="查看定位"></activity>
+        <activity android:name=".view.activity.MessageListActivity" android:screenOrientation="portrait" android:label="消息列表"></activity>
+        <activity android:name=".view.activity.IdentificationActivity" android:screenOrientation="portrait" android:label="身份认证"></activity>
+        <activity android:name=".view.activity.PayActivity" android:screenOrientation="portrait" android:label="支付"></activity>
+        <!--百度地图 定位-->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote" />
+    </application>
+
+</manifest>

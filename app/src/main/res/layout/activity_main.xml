@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.jyt.baseapp.view.widget.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFFFFF">
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/layout_shouye">
+            <ImageView
+                android:src="@mipmap/common_tab_home_s"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/img_shoueye" />
+
+            <TextView
+                android:text="首页"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/enableColor"
+                android:layout_marginTop="5dp"
+                android:id="@+id/text_shouye" />
+            
+        </LinearLayout>
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/layout_dingdan">
+            <ImageView
+                android:src="@mipmap/common_tab_order_n"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/img_dingdan" />
+            <TextView
+                android:textColor="@color/disableColor"
+                android:text="订单"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/text_dingdan" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/layout_xiaoxi">
+            <ImageView
+                android:src="@mipmap/common_tab_msg_n"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/img_xiaoxi" />
+
+            <TextView
+                android:text="消息"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:contextClickable="true"
+                android:textColor="@color/disableColor"
+                android:id="@+id/text_xiaoxi" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/layout_geren">
+            <ImageView
+                android:src="@mipmap/common_tab_mine_n"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/img_geren" />
+
+            <TextView
+                android:text="个人"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:contextClickable="true"
+                android:textColor="@color/disableColor"
+                android:id="@+id/text_geren" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/divider"
+    android:showDividers="beginning|middle"
+    >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="11dp"/>
+    <RelativeLayout
+        android:background="@color/white"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerVertical="true"
+            android:text="当前等级"
+            style="@style/defaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            style="@style/defaultTextStyle"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:text="保证金一级"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_currentLevel" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@color/white"
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerVertical="true"
+            android:text="调整等级"
+            style="@style/defaultTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/defaultTextStyle"
+            android:textColor="@color/colorPrimary"
+            android:text="保证金一级"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/text_adjustLevel" />
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="11dp"/>
+
+    <RelativeLayout
+        android:padding="15dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layout_userBalance">
+        <TextView
+            android:id="@+id/label_balance"
+            style="@style/defaultTextStyle"
+            android:text="使用账户余额支付 ¥"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_toRightOf="@id/label_balance"
+            style="@style/defaultTextStyle"
+            android:text="1500.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_userBalance" />
+
+        <CheckBox
+            android:clickable="false"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/sel_check_box"
+            android:button="@null"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:id="@+id/cb_userBalance" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:padding="15dp"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            style="@style/defaultTextStyle"
+            android:text="需缴纳金额"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_moneyLabel" />
+        <TextView
+            style="@style/defaultTextStyle"
+            android:id="@+id/text_payMoney"
+            android:layout_alignParentRight="true"
+            android:text="0.00"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            style="@style/defaultTextStyle"
+            android:layout_toLeftOf="@id/text_payMoney"
+            android:text="¥"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="11dp"
+                android:textColor="@color/colorPrimary"
+                android:text="*金额将存入钱包"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/text_tips" />
+
+            <TextView
+                android:textColor="@color/white"
+                android:background="@drawable/btn_blue_solid_angle"
+                android:text="支付"
+                style="@style/defaultBtn"
+                android:layout_marginTop="32dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_done" />
+    </LinearLayout>
+
+</LinearLayout>

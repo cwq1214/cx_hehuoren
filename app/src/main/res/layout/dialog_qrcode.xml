@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_solid_angle"
+    android:padding="13dp"
+    android:gravity="center">
+    <ImageView
+        android:layout_width="214dp"
+        android:layout_height="214dp"
+        android:id="@+id/img_qrcode" />
+
+    <TextView
+        android:paddingTop="11dp"
+        android:paddingBottom="11dp"
+        android:paddingLeft="61dp"
+        android:paddingRight="61dp"
+        android:text="关闭"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/shape_oval_blue"
+        android:textColor="#FFFFFF"
+        android:id="@+id/btn_close" />
+</LinearLayout>

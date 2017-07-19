@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_solid_angle">
+    <TextView
+        android:text="确定下班休息？"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/text_msg"
+        android:textColor="#4f4f4f"
+        android:layout_marginTop="16dp" />
+
+    <EditText
+        style="@style/defaultTextStyle"
+        android:hint="请输入"
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="12dp"
+        android:id="@+id/input_content"
+        android:singleLine="true"
+        android:padding="4dp"
+        android:foregroundGravity="top|left" />
+    <View
+        android:background="@color/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/disableColor"
+            android:text="取消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:id="@+id/btn_cancel" />
+        <View
+            android:background="@color/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/enableColor"
+            android:text="确定"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:id="@+id/btn_done" />
+    </LinearLayout>
+</LinearLayout>

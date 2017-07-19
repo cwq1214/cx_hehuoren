@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@drawable/divider"
+    android:showDividers="beginning|end|middle"
+    >
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_levelName"
+            android:layout_marginLeft="15dp"
+            android:textSize="30dp"
+            android:textColor="@color/colorPrimary"
+            android:text="保证金三级"
+            android:layout_marginTop="44dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_marginLeft="15dp"
+            android:layout_below="@id/text_levelName"
+            android:id="@+id/label"
+            android:text="保证金额（元）：  "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            />
+
+        <TextView
+            android:layout_marginTop="24dp"
+            android:layout_below="@id/text_levelName"
+            android:layout_toRightOf="@id/label"
+            android:text="1000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_depositMoney" />
+    </RelativeLayout>
+    
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"/>
+
+    <RelativeLayout
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layou_depositLevel">
+        <TextView
+            android:layout_margin="15dp"
+            android:text="保证金等级"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#4F4F4F"
+            android:textSize="15sp" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp" />
+    </RelativeLayout>
+</LinearLayout>

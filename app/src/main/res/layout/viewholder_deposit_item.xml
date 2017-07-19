@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="15dp"
+    android:background="@color/white">
+    <TextView
+        android:id="@+id/text_deposit_level_name"
+        android:text="保证金一级"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#4F4F4F" />
+    
+    <TextView
+        android:layout_below="@id/text_deposit_level_name"
+        android:id="@+id/text_des"
+        android:text="承接范围"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" />
+    
+    <ImageView
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:id="@+id/img_right"
+        android:src="@mipmap/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

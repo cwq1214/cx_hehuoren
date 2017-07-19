@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <RadioGroup
+            android:layout_centerInParent="true"
+            android:orientation="horizontal"
+            android:layout_width="150dp"
+            android:layout_height="28dp"
+            android:id="@+id/rg">
+            <RadioButton
+                android:textColor="@drawable/sel_rbtn_text_color"
+                android:background="@drawable/sel_rbtn_bg_left"
+                android:gravity="center"
+                android:button="@null"
+                android:text="收件"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:checked="true"
+                android:id="@+id/rbtn_pickup" />
+            <RadioButton
+                android:textColor="@drawable/sel_rbtn_text_color"
+                android:background="@drawable/sel_rbtn_bg_right"
+                android:gravity="center"
+                android:button="@null"
+                android:text="派件"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/rbtn_send" />
+
+        </RadioGroup>
+    </RelativeLayout>
+    <com.jyt.baseapp.view.widget.NoScrollViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.jyt.baseapp.view.widget.NoScrollViewPager>
+</LinearLayout>

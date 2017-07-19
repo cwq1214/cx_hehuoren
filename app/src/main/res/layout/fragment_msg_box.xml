@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    >
+    <RelativeLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_centerInParent="true"
+            android:text="消息箱"
+            android:textSize="@dimen/titleTextSize"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <!--<com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout-->
+        <!--android:id="@+id/refreshLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<android.support.v7.widget.RecyclerView-->
+            <!--android:id="@+id/recyclerview"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>-->
+        <LinearLayout
+            android:divider="@drawable/divider"
+            android:showDividers="middle"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/layout_sys"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="15dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/img_sys"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/msg_icon_systemnotice_n" />
+
+                <TextView
+                    style="@style/defaultTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/img_sys"
+                    android:text="系统通知" />
+
+                <TextView
+                    android:id="@+id/text_sysDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="2017-02-05" />
+
+                <TextView
+                    android:id="@+id/text_sysmsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_sys"
+                    android:layout_toRightOf="@id/img_sys"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="123ead" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/layout_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="15dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/img_order"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:src="@mipmap/msg_icon_notice_n" />
+
+                <TextView
+                    style="@style/defaultTextStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/img_order"
+                    android:text="订单消息" />
+
+                <TextView
+                    android:id="@+id/text_orderDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="2017-02-05" />
+
+                <TextView
+                    android:id="@+id/text_ordermsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_order"
+                    android:layout_toRightOf="@id/img_order"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="123ead" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    <!--</com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout>-->
+</LinearLayout>

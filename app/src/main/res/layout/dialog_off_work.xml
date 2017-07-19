@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_solid_angle">
+    <TextView
+        android:layout_marginTop="45dp"
+        android:layout_marginBottom="45dp"
+        android:text="确定下班休息？"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:id="@+id/text_msg"
+        android:textColor="#4f4f4f" />
+
+    <View
+        android:background="@color/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/disableColor"
+            android:text="取消"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:id="@+id/btn_cancel" />
+        <View
+            android:background="@color/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_weight="1"
+            android:textColor="@color/enableColor"
+            android:text="确定"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingBottom="13dp"
+            android:paddingTop="13dp"
+            android:id="@+id/btn_done" />
+    </LinearLayout>
+</LinearLayout>

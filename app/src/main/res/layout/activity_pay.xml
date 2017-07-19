@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:divider="@drawable/divider"
+            android:showDividers="middle"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:background="#F4F4F4"
+                android:layout_width="match_parent"
+                android:layout_height="8dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:id="@+id/layout_order"
+                android:background="#FFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品名称:"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=""
+                    android:textColor="#000" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="15dp"
+                android:id="@+id/layout_allPrice"
+                android:background="#FFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="商品价格:"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/tv_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=""
+                    android:textColor="#e2333c"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <View
+                android:background="#F4F4F4"
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:id="@+id/d3" />
+
+            <TextView
+                android:padding="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="支付方式"
+                android:textColor="#000"
+                android:background="#FFF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="#FFF"
+                android:id="@+id/layout_alipay">
+
+                <CheckBox
+                    android:id="@+id/cb_zfb"
+                    android:background="@drawable/sel_check_box"
+                    android:button="@null"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:checked="true" />
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/pay_icon_zhifubao_n"
+                    />
+
+                <TextView
+                    style="@style/defaultTextStyle"
+                    android:id="@+id/tv_zfb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="支付宝支付"
+                     />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:background="#FFF"
+                android:id="@+id/layout_wx">
+
+                <CheckBox
+                    android:id="@+id/cb_wx"
+                    android:background="@drawable/sel_check_box"
+                    android:button="@null"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:checked="false" />
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginLeft="15dp"
+                    android:src="@mipmap/pay_icon_weixin_n"/>
+
+                <TextView
+                    style="@style/defaultTextStyle"
+                    android:id="@+id/tv_wx"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="微信支付"
+                     />
+
+            </LinearLayout>
+
+
+
+
+            <Button
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_ok"
+                style="@style/defaultBtn"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="36dp"
+                android:text="确认支付"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+        </LinearLayout>
+    </ScrollView>
+
