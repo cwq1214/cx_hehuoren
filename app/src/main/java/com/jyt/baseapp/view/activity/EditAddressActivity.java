@@ -17,7 +17,9 @@ import com.jyt.baseapp.api.BeanCallback;
 import com.jyt.baseapp.api.Http;
 import com.jyt.baseapp.entity.BaseJson;
 import com.jyt.baseapp.util.IntentHelper;
+import com.jyt.baseapp.util.SoftInputUtil;
 import com.jyt.baseapp.util.T;
+import com.jyt.baseapp.view.dialog.SelLocationDialog;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -39,6 +41,8 @@ public class EditAddressActivity extends BaseActivity {
     ImageView btnGetLocation;
     @BindView(R.id.btn_done)
     TextView btnDone;
+    @BindView(R.id.text_place)
+    TextView textPlace;
 
 
     String longitude;
@@ -48,6 +52,18 @@ public class EditAddressActivity extends BaseActivity {
     String address;
     String orderId;
     String type;
+    String detail;
+    String province;
+    String city;
+    String district;
+
+    String defProvince;
+    String defCity;
+    String defDistrict;
+
+
+    SelLocationDialog dialog;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_edit_address;
@@ -69,6 +85,14 @@ public class EditAddressActivity extends BaseActivity {
         address = getIntent().getStringExtra(IntentHelper.KEY_ADDRESS);
         orderId = getIntent().getStringExtra(IntentHelper.KEY_ORDER_ID);
         type = getIntent().getStringExtra(IntentHelper.KEY_TYPE);
+        detail = getIntent().getStringExtra(IntentHelper.KEY_DETAIL);
+        province = getIntent().getStringExtra(IntentHelper.KEY_PROVINCE);
+        city =  getIntent().getStringExtra(IntentHelper.KEY_CITY); ;
+        district = getIntent().getStringExtra(IntentHelper.KEY_DISTRICT);
+        defProvince = province;
+        defCity = city;
+        defDistrict = district;
+
 
         inputName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -117,29 +141,67 @@ public class EditAddressActivity extends BaseActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                address = s.toString();
+                detail = s.toString();
             }
         });
 
+        textAddress.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    textAddress.setText("");
+                    SoftInputUtil.showSoftKeyboard(getContext(),textAddress);
+                }
+            }
+        });
 
         inputName.setText(name);
         inputContract.setText(phone);
-        textAddress.setText(address);
+        textAddress.setText(detail);
 
 
 
     }
 
+    @OnClick(R.id.layout_selPlace)
+    public void onSelPlaceClick(){
+        if (dialog==null) {
+            dialog = new SelLocationDialog(getContext());
+            dialog.setOnSelFinishCallback(new SelLocationDialog.OnSelFinishCallback() {
+                @Override
+                public void onSelFinish(final String province, final String city, final String district) {
+                    EditAddressActivity.this.province = province;
+                    EditAddressActivity.this.city = city;
+                    EditAddressActivity.this.district = district;
+                    EditAddressActivity.this.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            textPlace.setText(province+" "+city+" "+district);
+                        }
+                    });
+                }
+            });
+        }
+        dialog.setSelectLocation(province,city,district);
+
+        dialog.show();
+    }
+
     @OnClick(R.id.btn_getLocation)
     public void onGetLocationClick(){
-        IntentHelper.openSelLocationActivity(getContext(),longitude,latitude);
+        if (!TextUtils.isEmpty(province)&&!TextUtils.isEmpty(city)&&!TextUtils.isEmpty(district)&&
+                province.equals(defProvince)&&city.equals(defCity)&&district.equals(defDistrict)){
+            IntentHelper.openSelAddressActivity(getContext(),latitude,longitude,province,city,district);
+        }else {
+            IntentHelper.openSelAddressActivity(getContext(),null,null,province,city,district);
+        }
     }
 
     @OnClick(R.id.btn_done)
     public void onDoneClick(){
 
 
-        editAddress(type,name,address,phone,latitude,longitude);
+        editAddress();
     }
 
     private void setResultAndFinish(){
@@ -149,6 +211,10 @@ public class EditAddressActivity extends BaseActivity {
         intent.putExtra(IntentHelper.KEY_NAME,name);
         intent.putExtra(IntentHelper.KEY_PHONE,phone);
         intent.putExtra(IntentHelper.KEY_ADDRESS,address);
+        intent.putExtra(IntentHelper.KEY_PROVINCE,province);
+        intent.putExtra(IntentHelper.KEY_CITY,city);
+        intent.putExtra(IntentHelper.KEY_DISTRICT,district);
+        intent.putExtra(IntentHelper.KEY_DETAIL,detail);
         setResult(RESULT_OK,intent);
         finish();
     }
@@ -166,14 +232,22 @@ public class EditAddressActivity extends BaseActivity {
         }
     }
 
-    private void editAddress(String type,String name,String address,String phone,String lat,String lon){
-        if (TextUtils.isEmpty(lat)){
-            lat = "0";
+    private void editAddress(){
+        if (TextUtils.isEmpty(province)||TextUtils.isEmpty(city)||TextUtils.isEmpty(district)){
+            T.showShort(getContext(),"请先选址所在地");
+            return;
         }
-        if (TextUtils.isEmpty(lon)){
-            lon = "0";
+
+        if (TextUtils.isEmpty(latitude)){
+            latitude = "0";
         }
-        Http.setUpdateAddress(getContext(), type, name, phone, address, orderId, lat, lon, new BeanCallback<BaseJson>(getContext()) {
+        if (TextUtils.isEmpty(longitude)) {
+            longitude = "0";
+        }
+        detail = textAddress.getText().toString();
+        address = province+city+district+detail;
+
+        Http.setUpdateAddress(getContext(), type, name, phone, address, orderId, latitude, longitude,province,city,district,detail, new BeanCallback<BaseJson>(getContext()) {
             @Override
             public void onResponse(BaseJson response, int id) {
                 super.onResponse(response,id);

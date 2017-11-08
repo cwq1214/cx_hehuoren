@@ -82,35 +82,38 @@ public class MessageListActivity extends BaseActivity {
                     }else {
                         RobOrderDialog dialog = new RobOrderDialog(getContext());
                         dialog.setMessage((OrderMessage) data);
-                        dialog.setOnDoneClickListener(new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(final DialogInterface dialog, int which) {
-
-                                Http.setRobOrder(getContext(), ((OrderMessage) data).messageId, new BeanCallback<BaseJson>(getContext()) {
-                                    @Override
-                                    public void onResult(boolean success, BaseJson response, Exception e) {
-                                        super.onResult(success, response, e);
-                                        if (success){
-                                            T.showShort(getContext(),response.forUser);
-                                            if (response.ret){
-                                                dialog.dismiss();
-                                                MainActivity.startPage = 1;
-                                                finish();
-//                                                IntentHelper.openMainActivity(getContext());
-                                            }
-
-                                        }else {
-                                            T.showShort(getContext(),e.getMessage());
-                                        }
-                                    }
-                                });
-
-                            }
-                        });
+//                        dialog.setOnDoneClickListener(new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(final DialogInterface dialog, int which) {
+//
+//                                Http.setRobOrder(getContext(), ((OrderMessage) data).messageId, new BeanCallback<BaseJson>(getContext()) {
+//                                    @Override
+//                                    public void onResult(boolean success, BaseJson response, Exception e) {
+//                                        super.onResult(success, response, e);
+//                                        if (success){
+//                                            T.showShort(getContext(),response.forUser);
+//                                            if (response.ret){
+//                                                dialog.dismiss();
+//                                                finish();
+////                                                IntentHelper.openMainActivity(getContext());
+//                                            }
+//
+//                                        }else {
+//                                            T.showShort(getContext(),e.getMessage());
+//                                        }
+//                                    }
+//                                });
+//
+//                            }
+//                        });
                         dialog.show();
                     }
 
-
+                    if (((OrderMessage) data).isread.equals("0"))
+                        readMsg(((OrderMessage) data).messageId,"1");
+                }else {
+                    if (((SystemMessage) data).isread.equals("0"))
+                        readMsg(((SystemMessage) data).messageId,"2");
                 }
             }
         });
@@ -151,6 +154,31 @@ public class MessageListActivity extends BaseActivity {
     }
 
 
+    private void readMsg(final String msgId, String type){
+        Http.readMsg(getContext(), msgId, type, new BeanCallback(getContext()) {
+            @Override
+            public void onResult(boolean success, Object response, Exception e) {
+                super.onResult(success, response, e);
+                if (success){
+                    for (int i=0,max = adapter.getDataList().size();i<max;i++){
+                        if (adapter.getDataList().get(i) instanceof SystemMessage){
+                            if (msgId.equals(((SystemMessage) adapter.getDataList().get(i)).messageId)){
+                                ((SystemMessage) adapter.getDataList().get(i)).isread = "1";
+                                adapter.notifyDataSetChanged();
+                                break;
+                            }
+                        }else if (adapter.getDataList().get(i) instanceof OrderMessage){
+                            if (msgId.equals(((OrderMessage) adapter.getDataList().get(i)).messageId)){
+                                ((OrderMessage) adapter.getDataList().get(i)).isread = "1";
+                                adapter.notifyDataSetChanged();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
 
     private void getSystemMessage(final String lastId){
         Http.getSystemMessageList(getContext(), lastId, new BeanCallback<BaseJson<List<SystemMessage>>>(getContext()) {

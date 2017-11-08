@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
@@ -36,20 +37,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="15dp"
+                android:padding="0dp"
                 android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/img_sys"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_margin="15dp"
                     android:src="@mipmap/msg_icon_systemnotice_n" />
+
+                <TextView
+                    android:id="@+id/text_sysCount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_red_pop"
+                    android:gravity="center"
+                    android:text="99+"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
                 <TextView
                     style="@style/defaultTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:layout_toRightOf="@id/img_sys"
                     android:text="系统通知" />
 
@@ -58,6 +72,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
                     android:text="2017-02-05" />
 
                 <TextView
@@ -76,20 +92,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="15dp"
                 android:visibility="gone">
 
                 <ImageView
                     android:id="@+id/img_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
+                    android:layout_margin="15dp"
                     android:src="@mipmap/msg_icon_notice_n" />
+
+                <TextView
+                    android:id="@+id/text_orderCount"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="45dp"
+                    android:layout_marginTop="7dp"
+                    android:background="@drawable/bg_red_pop"
+                    android:gravity="center"
+                    android:text="99+"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
                 <TextView
                     style="@style/defaultTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
                     android:layout_toRightOf="@id/img_order"
                     android:text="订单消息" />
 
@@ -98,6 +126,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="15dp"
                     android:text="2017-02-05" />
 
                 <TextView

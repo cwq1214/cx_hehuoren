@@ -52,12 +52,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/defaultTextStyle" />
+
             <TextView
-                android:text="20170303022121"
+                android:id="@+id/text_phone"
+                style="@style/defaultTextStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/defaultTextStyle"
-                android:id="@+id/text_phone" />
+                android:autoLink="phone"
+                android:text="20170303022121" />
         </LinearLayout>
     </LinearLayout>
 

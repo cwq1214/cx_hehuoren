@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.jyt.baseapp.R;
 import com.jyt.baseapp.api.BeanCallback;
 import com.jyt.baseapp.api.Http;
+import com.jyt.baseapp.bean.WeiXinPayResult;
 import com.jyt.baseapp.entity.BaseJson;
 import com.jyt.baseapp.entity.CheckDepositResult;
 import com.jyt.baseapp.entity.Deposit;
@@ -87,11 +88,10 @@ public class DepositAdjustActivity extends BaseActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     if (which==1){
-
+                        beforeWeiXinPay();
                     }else if (which==2){
                         beforeALiPay();
                     }
-
                     dialog.dismiss();
                 }
             });
@@ -168,12 +168,14 @@ public class DepositAdjustActivity extends BaseActivity {
             public void onResult(boolean success, BaseJson response, Exception e) {
                 super.onResult(success, response, e);
                 if (success){
-                    T.showShort(getContext(),response.forUser);
                     if (response.ret){
+                        T.showShort(getContext(),"操作成功");
                         finish();
+                    }else {
+                        T.showShort(getContext(),"操作失败");
                     }
                 }else {
-                    T.showShort(getContext(),e.getMessage());
+                    T.showShort(getContext(),"操作失败");
                 }
             }
         });
@@ -181,6 +183,7 @@ public class DepositAdjustActivity extends BaseActivity {
 
 
     private void beforeALiPay(){
+
         Http.aLiBeforeBuyDeposit(getContext(), cbUserBalance.isChecked() ? "1" : "2", depositId, new BeanCallback<BaseJson<DepositPayResult>>(getContext()) {
             @Override
             public void onResult(boolean success, BaseJson<DepositPayResult> response, Exception e) {
@@ -188,7 +191,39 @@ public class DepositAdjustActivity extends BaseActivity {
                 if (success){
                     T.showShort(getContext(),response.forUser);
                     if (response.ret){
-                        IntentHelper.openPayActivityForResult_ALI(getContext(),response.data.sign,"购买保证金",response.data.cash+"",true);
+                        String cash = "";
+                        if (cbUserBalance.isChecked()){
+                            cash = Float.valueOf(checkDepositResult.payMoney)-Float.valueOf(selfInfoResult.cash) +"";
+                        }else {
+                            cash = checkDepositResult.payMoney;
+                        }
+
+                        IntentHelper.openPayActivityForResult_ALI(getContext(),response.data.sign,"购买保证金",cash+"",true);
+                    }
+                }else {
+                    T.showShort(getContext(),e.getMessage());
+                }
+            }
+        });
+    }
+    private void beforeWeiXinPay(){
+        Http.WeiXinBeforeBuyDeposit(getContext(), cbUserBalance.isChecked() ? "1" : "2", depositId, new BeanCallback<BaseJson<WeiXinPayResult>>(getContext()) {
+            @Override
+            public void onResult(boolean success, BaseJson<WeiXinPayResult> response, Exception e) {
+                super.onResult(success, response, e);
+                if (success){
+                    T.showShort(getContext(),response.forUser);
+                    if (response.ret){
+                        String cash = "";
+                        if (cbUserBalance.isChecked()){
+                            cash = Float.valueOf(checkDepositResult.payMoney)-Float.valueOf(selfInfoResult.cash) +"";
+                        }else {
+                            cash = checkDepositResult.payMoney;
+                        }
+
+                        IntentHelper.openPayActivityForResult_WeiXin(getContext(),response.data.partnerId
+                                ,response.data.prepayId,response.data.timeStamp+"",response.data.paySign,response.data.packageValue
+                                ,response.data.nonceStr,"购买保证金",cash,true);
                     }
                 }else {
                     T.showShort(getContext(),e.getMessage());
@@ -201,6 +236,13 @@ public class DepositAdjustActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IntentHelper.REQUIRE_PAY && resultCode == RESULT_OK){
+            boolean payResult = data.getBooleanExtra(IntentHelper.KEY_PAY_RESULT,false);
+            if (payResult){
+                T.showShort(getContext(),"购买成功");
+
+            }else {
+                T.showShort(getContext(),"购买失败");
+            }
             finish();
         }
     }

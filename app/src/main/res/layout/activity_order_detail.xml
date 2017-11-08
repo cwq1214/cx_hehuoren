@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:divider="@drawable/divider"
     android:showDividers="beginning|end|middle"
+    android:focusableInTouchMode="true"
+    android:focusable="true"
     >
     <View
         android:layout_width="match_parent"

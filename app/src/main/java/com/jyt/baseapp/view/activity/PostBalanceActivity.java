@@ -151,11 +151,18 @@ public class PostBalanceActivity extends BaseActivity {
 
         Http.postBalance(getContext(), selBankCard.bankId, inputMoney.getText().toString(), new BeanCallback<BaseJson>(getContext()) {
             @Override
-            public void onResponse(BaseJson response, int id) {
-                super.onResponse(response, id);
-                T.showShort(getContext(),response.forUser);
-                if (response.ret){
-                    finish();
+            public void onResult(boolean success, BaseJson response, Exception e) {
+                super.onResult(success, response, e);
+                if (success){
+//                    T.showShort(getContext(),response.forUser);
+                    if (response.ret){
+                        T.showShort(getContext(),"操作成功");
+                        finish();
+                    }else{
+                        T.showShort(getContext(),"操作失败");
+                    }
+                }else{
+                    T.showShort(getContext(),"操作失败");
                 }
             }
         });

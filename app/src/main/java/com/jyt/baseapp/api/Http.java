@@ -15,6 +15,9 @@ import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.util.Util;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.jyt.baseapp.entity.Area;
 import com.jyt.baseapp.util.Cache;
 import com.jyt.baseapp.util.FileUtil;
 import com.jyt.baseapp.util.ImageUtil;
@@ -49,7 +52,8 @@ import okhttp3.MediaType;
  */
 
 public class Http {
-    public static final String DOMAIN = "http://119.23.66.37";
+    public static final String DOMAIN = "http://106.15.89.227";
+//    public static final String DOMAIN = "http://192.168.3.16";
 
     public static final String LOGIN = DOMAIN + "/logistics/partner/login/";
 
@@ -119,8 +123,128 @@ public class Http {
 
     public static final String FINISH_ORDER = DOMAIN + "/logistics/partner/receive/finish";
 
-//    public static final String SEND_ORDER_DETAIL = DOMAIN + "/logistics/partner/send/order_detail";
+    public static final String READ_MSG = DOMAIN + "/logistics/partner/message/set_isread";
 
+    public static final String GET_PROVINCE_CITY = DOMAIN + "/logistics/user/index/get_pro_city";
+
+    public static final String DO_NOT_ROB = DOMAIN + "/logistics/partner/message/give_up_order";
+
+    public static final String WEIXIN_PAY = DOMAIN + "/logistics/partner/pay/wechat_pay";
+
+
+
+
+    public static void getProvinceCityDistrictList(Context context, final String province, final String city, String district, final BeanCallback callback){
+        final HashMap<String,List> location = new HashMap<>();
+        getProvinceList(context,new BeanCallback<String>(context){
+            @Override
+            public void onResult(boolean success, String response, Exception e) {
+                super.onResult(success, response, e);
+                if (success) {
+                    JSONArray json = null;
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        json = jsonObject.optJSONObject("result").optJSONObject("jingdong_area_province_get_responce").optJSONArray("province_areas");
+                    } catch (JSONException e1) {
+                        e1.printStackTrace();
+                    }
+                    if (json != null) {
+                        List<Area> provinces = new Gson().fromJson(json.toString(), new TypeToken<List<Area>>() {
+                        }.getType());
+                        location.put("province",provinces);
+
+                        for (int i=0,maxP = provinces.size();i<maxP;i++){
+                            if (provinces.get(i).name.equals(province)){
+                                getCityList(context, provinces.get(i).id+"", new BeanCallback<String>(context) {
+                                    @Override
+                                    public void onResult(boolean success, String response, Exception e) {
+                                        super.onResult(success, response, e);
+                                        if (success) {
+                                            JSONArray json = null;
+                                            try {
+                                                JSONObject jsonObject = new JSONObject(response);
+                                                json = jsonObject.optJSONObject("result").optJSONObject("jingdong_areas_city_get_responce").optJSONObject("baseAreaServiceResponse").optJSONArray("data");
+                                            } catch (JSONException e1) {
+                                                e1.printStackTrace();
+                                            }
+                                            if (json != null) {
+                                                List<Area> cities = new Gson().fromJson(json.toString(), new TypeToken<List<Area>>() {
+                                                }.getType());
+                                                location.put("city",cities);
+                                                for (int i1=0,maxC=cities.size();i1<maxC;i1++){
+                                                    if (cities.get(i1).areaName.equals(city)){
+                                                        getCountryList(context, cities.get(i1).areaId+"", new BeanCallback<String>(context) {
+                                                            @Override
+                                                            public void onResult(boolean success, String response, Exception e) {
+                                                                super.onResult(success, response, e);
+                                                                if (success) {
+                                                                    JSONArray json = null;
+                                                                    try {
+                                                                        JSONObject jsonObject = new JSONObject(response);
+                                                                        json = jsonObject.optJSONObject("result").optJSONObject("jingdong_areas_county_get_responce").optJSONObject("baseAreaServiceResponse").optJSONArray("data");
+                                                                    } catch (JSONException e1) {
+                                                                        e1.printStackTrace();
+                                                                    }
+                                                                    if (json != null) {
+                                                                        List<Area> districts= new Gson().fromJson(json.toString(), new TypeToken<List<Area>>() {
+                                                                        }.getType());
+                                                                        location.put("district",districts);
+                                                                        callback.onResult(true,location,e);
+
+                                                                    }
+                                                                }
+                                                            }
+                                                        });
+                                                        break;
+                                                    }
+                                                }
+
+                                            }
+                                        }
+                                    }
+                                });
+                                break;
+                            }
+                        }
+
+                    }
+                }
+            }
+        });
+    }
+
+
+    //获取省列表
+    public static void getProvinceList(Context context,BeanCallback callback){
+        OkHttpUtils.get().url("https://way.jd.com/JDCloud/getProvince?appkey=98a367c4465dd4efb99ca7b072033244").build().execute(callback);
+    }
+    //获取市列表
+    public static void getCityList(Context context,String parentId,BeanCallback callback){
+        OkHttpUtils.get().url("https://way.jd.com/JDCloud/getCity").addParams("parent_id",parentId).addParams("appkey","98a367c4465dd4efb99ca7b072033244").build().execute(callback);
+    }
+    //获取区列表
+    public static void getCountryList(Context context,String parentId,BeanCallback callback){
+        OkHttpUtils.get().url("https://way.jd.com/JDCloud/getCountry").addParams("parent_id",parentId).addParams("appkey","98a367c4465dd4efb99ca7b072033244").build().execute(callback);
+    }
+    //不抢单
+    public static void doNotRob(Context context,String messageId,BeanCallback callback){
+        OkHttpUtils.post().addHeader("tokenSession", Cache.getInstance().getToken()).url(DO_NOT_ROB).addParams("token",Cache.getInstance().getToken())
+                .build().execute(callback);
+    }
+
+    public static void getProvinceCity(Context context,BeanCallback callback){
+        OkHttpUtils.get().addHeader("tokenSession", Cache.getInstance().getToken()).url(GET_PROVINCE_CITY)
+                .addParams("token",Cache.getInstance().getToken())
+                .build().execute(callback);
+    }
+
+    //读取消息
+    public static void readMsg(Context context,String messageId,String type,BeanCallback callback){
+        OkHttpUtils.post().addHeader("tokenSession", Cache.getInstance().getToken()).url(READ_MSG)
+                .addParams("messageId",messageId)
+                .addParams("type",type)
+                .build().execute(callback);
+    }
 
     //到达中专中中心
     public static void finishOrder(Context context,String orderId,BeanCallback callback){
@@ -160,6 +284,15 @@ public class Http {
                 .build().execute(callback);
 
     }
+    //微信 购买保证金
+    public static void WeiXinBeforeBuyDeposit(Context context,String type,String depositId,BeanCallback callback){
+        OkHttpUtils.post().addHeader("tokenSession", Cache.getInstance().getToken()).url(WEIXIN_PAY)
+                .addParams("type",type)
+                .addParams("depositId",depositId)
+                .build().execute(callback);
+
+    }
+
 
     //购买保证金
     public static void buyDeposit(Context context,String depositId,BeanCallback callback){
@@ -293,7 +426,7 @@ public class Http {
     }
 
     //修改地址
-    public static void setUpdateAddress(Context context,String type,String name ,String mobile,String address,String orderId,String latitude,String longitude,BeanCallback callback){
+    public static void setUpdateAddress(Context context,String type,String name ,String mobile,String address,String orderId,String latitude,String longitude,String province,String city,String district,String detail,BeanCallback callback){
         OkHttpUtils.post().addHeader("tokenSession", Cache.getInstance().getToken()).url(UPDATE_ADDRESS)
                 .addParams("type",type)
                 .addParams("name",name)
@@ -302,6 +435,10 @@ public class Http {
                 .addParams("orderId",orderId)
                 .addParams("latitude",latitude)
                 .addParams("longitude",longitude)
+                .addParams("province",province)
+                .addParams("city",city)
+                .addParams("district",district)
+                .addParams("detail",detail)
                 .build().execute(callback);
     }
 

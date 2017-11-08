@@ -66,6 +66,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class App extends Application {
 
+    public static final String WEIXIN_APPID = "wxb216a8fe97a88693";
     public static LocationClient mLocationClient = null;
 
     public static final int MSG_SET_ALIAS = 0;

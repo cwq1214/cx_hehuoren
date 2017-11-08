@@ -1,6 +1,7 @@
 package com.jyt.baseapp.view.dialog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,8 @@ import com.jyt.baseapp.view.activity.MainActivity;
 import com.jyt.baseapp.view.fragment.OrderFragment;
 import com.jyt.baseapp.view.fragment.OrderPickUpFragment;
 import com.jyt.baseapp.view.fragment.OrderSendFragment;
+
+import org.apache.http.params.HttpParams;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,7 +101,28 @@ public class RobOrderDialog extends AlertDialog {
         if (onCancelClickListener!=null){
             onCancelClickListener.onClick(this,0);
         }else {
-            dismiss();
+            if ("1".equals(orderMessage.msgType)){
+                Http.doNotRob(getContext().getApplicationContext(), orderMessage.messageId, new BeanCallback<BaseJson>(getContext()) {
+                    @Override
+                    public void onResult(boolean success, BaseJson response, Exception e) {
+                        super.onResult(success, response, e);
+                        if (success){
+                            T.showShort(getContext(),response.forUser);
+                            if (response.ret){
+                                Intent intent = new Intent("ACTION_CHANGE_PAGE");
+                                intent.putExtra("page",1);
+                                getContext().sendBroadcast(intent);
+                                getContext().sendBroadcast(new Intent("ACTION_REFRESH"));
+                            }
+                        }else {
+                            T.showShort(getContext(),e.getMessage());
+                        }
+//                        dismiss();
+                    }
+                });
+
+                dismiss();
+            }
         }
     }
 
@@ -107,7 +131,7 @@ public class RobOrderDialog extends AlertDialog {
         if (onDoneClickListener!=null){
             onDoneClickListener.onClick(this,0);
         }else {
-            if (orderMessage!=null){
+//            if (orderMessage!=null){
                 Http.setRobOrder(getContext(), orderMessage.messageId, new BeanCallback<BaseJson>(getContext()) {
                     @Override
                     public void onResult(boolean success, BaseJson response, Exception e) {
@@ -115,8 +139,10 @@ public class RobOrderDialog extends AlertDialog {
                         if (success){
                             T.showShort(getContext(),response.forUser);
                             if (response.ret){
-                                MainActivity.startPage = 1;
-//                                            IntentHelper.openMainActivity(getContext());
+                                Intent intent = new Intent("ACTION_CHANGE_PAGE");
+                                intent.putExtra("page",1);
+                                getContext().sendBroadcast(intent);
+                                getContext().sendBroadcast(new Intent("ACTION_REFRESH"));
                             }
 
                         }else {
@@ -125,8 +151,6 @@ public class RobOrderDialog extends AlertDialog {
                         dismiss();
                     }
                 });
-            }
-
 
             dismiss();
         }

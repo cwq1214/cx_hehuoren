@@ -3,6 +3,8 @@ package com.jyt.baseapp.view.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -15,6 +17,7 @@ import com.jyt.baseapp.entity.BaseJson;
 import com.jyt.baseapp.entity.HomeMsgBox;
 import com.jyt.baseapp.util.IntentHelper;
 import com.jyt.baseapp.util.T;
+import com.jyt.baseapp.view.activity.MainActivity;
 import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
 import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
@@ -44,6 +47,10 @@ public class MessageBoxFragment extends BaseFragment {
     TextView textOrdermsg;
     @BindView(R.id.layout_order)
     RelativeLayout layoutOrder;
+    @BindView(R.id.text_sysCount)
+    TextView textSysCount;
+    @BindView(R.id.text_orderCount)
+    TextView textOrderCount;
 //    @BindView(R.id.refreshLayout)
 //    TwinklingRefreshLayout refreshLayout;
 
@@ -73,7 +80,7 @@ public class MessageBoxFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
 //        refreshLayout.startRefresh();
-        getMsg();
+           getMsg();
     }
 
     private void getMsg() {
@@ -89,6 +96,16 @@ public class MessageBoxFragment extends BaseFragment {
                         layoutSys.setVisibility(View.VISIBLE);
                         textSysDate.setText(response.data.sys.createdTime);
                         textSysmsg.setText(response.data.sys.content);
+                        if ("0".equals(response.data.countSys)|| TextUtils.isEmpty(response.data.countSys)) {
+                            textSysCount.setVisibility(View.GONE);
+                        }else {
+                            textSysCount.setVisibility(View.VISIBLE);
+                            if (Integer.valueOf(response.data.countSys)>99){
+                                textSysCount.setText("99+");
+                            }else {
+                                textSysCount.setText(response.data.countSys);
+                            }
+                        }
                     }
 
 
@@ -98,6 +115,31 @@ public class MessageBoxFragment extends BaseFragment {
                         layoutOrder.setVisibility(View.VISIBLE);
                         textOrderDate.setText(response.data.order.createdTime);
                         textOrdermsg.setText(response.data.order.content);
+
+                        if ("0".equals(response.data.countOrder)|| TextUtils.isEmpty(response.data.countOrder)) {
+                            textOrderCount.setVisibility(View.GONE);
+                        }else {
+                            textOrderCount.setVisibility(View.VISIBLE);
+                            if (Integer.valueOf(response.data.countOrder)>99){
+                                textOrderCount.setText("99+");
+                            }else {
+                                textOrderCount.setText(response.data.countOrder);
+                            }
+                        }
+                    }
+
+                    int msgCount = 0;
+                    if (!TextUtils.isEmpty(response.data.countOrder)){
+                        msgCount += Integer.valueOf(response.data.countOrder);
+                    }
+                    if (!TextUtils.isEmpty(response.data.countSys)){
+                        msgCount += Integer.valueOf(response.data.countSys);
+                    }
+                    if (msgCount!=0) {
+                        ((MainActivity) getActivity()).textMsgCount.setVisibility(View.VISIBLE);
+                        ((MainActivity) getActivity()).textMsgCount.setText(msgCount + "");
+                    }else {
+                        ((MainActivity) getActivity()).textMsgCount.setVisibility(View.GONE);
                     }
                 }
 //                refreshLayout.finishRefreshing();

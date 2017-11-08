@@ -26,6 +26,7 @@ import com.jyt.baseapp.util.IntentHelper;
 import com.jyt.baseapp.util.L;
 import com.jyt.baseapp.util.T;
 import com.jyt.baseapp.view.dialog.RobOrderDialog;
+import com.jyt.baseapp.view.dialog.SelLocationDialog;
 import com.jyt.baseapp.view.fragment.HomeFragment;
 import com.jyt.baseapp.view.fragment.MessageBoxFragment;
 import com.jyt.baseapp.view.fragment.OrderFragment;
@@ -76,8 +77,11 @@ public class MainActivity extends BaseActivity {
     TextView textGeren;
     @BindView(R.id.layout_geren)
     LinearLayout layoutGeren;
-    RobOrderDialog robOrderDialog;
+    @BindView(R.id.text_msgCount)
+    public TextView textMsgCount;
 
+    RobOrderDialog robOrderDialog;
+    ChangePageReceiver changePageReceiver;
     Integer[] selImgId = {R.mipmap.common_tab_home_s,R.mipmap.common_tab_order_s,R.mipmap.common_tab_msg_s,R.mipmap.common_tab_mine_s};
     Integer[] norImgId = {R.mipmap.common_tab_home_n,R.mipmap.common_tab_order_n,R.mipmap.common_tab_msg_n,R.mipmap.common_tab_mine_n};
     ImageView[] img ;
@@ -137,6 +141,10 @@ public class MainActivity extends BaseActivity {
         IntentFilter intentFilter = new IntentFilter(JPushInterface.ACTION_NOTIFICATION_RECEIVED);
         intentFilter.addCategory(getPackageName());
         registerReceiver(talkReceiver,intentFilter);
+
+        changePageReceiver = new ChangePageReceiver();
+        registerReceiver(changePageReceiver,new IntentFilter("ACTION_CHANGE_PAGE"));
+
     }
 
     @Override
@@ -145,31 +153,32 @@ public class MainActivity extends BaseActivity {
         if (startPage!=-1){
             viewPager.setCurrentItem(startPage,false);
 
-            if (startPage==1){
-                OrderFragment orderFragment = (OrderFragment) adapter.getFragments().get(1);
-                if (orderFragment!=null) {
-                    OrderPickUpFragment pickUpFragment = ((OrderFragment) orderFragment).getPickUpFragment();
-                    OrderSendFragment sendFragment = ((OrderFragment) orderFragment).getSendFragment();
-
-                    try {
-                        if (pickUpFragment != null) {
-                            pickUpFragment.refresh();
-                        }
-                    } catch (Exception ex) {
-
-                    }
-                    try {
-                        if (sendFragment != null) {
-                            sendFragment.refresh();
-                        }
-                    } catch (Exception ex) {
-
-                    }
-                }
-            }
+//            if (startPage==1){
+//                OrderFragment orderFragment = (OrderFragment) adapter.getFragments().get(1);
+//                if (orderFragment!=null) {
+//                    OrderPickUpFragment pickUpFragment = ((OrderFragment) orderFragment).getPickUpFragment();
+//                    OrderSendFragment sendFragment = ((OrderFragment) orderFragment).getSendFragment();
+//
+//                    try {
+//                        if (pickUpFragment != null) {
+//                            pickUpFragment.refresh();
+//                        }
+//                    } catch (Exception ex) {
+//
+//                    }
+//                    try {
+//                        if (sendFragment != null) {
+//                            sendFragment.refresh();
+//                        }
+//                    } catch (Exception ex) {
+//
+//                    }
+//                }
+//            }
 
             startPage = -1;
         }
+
     }
 
     @Override
@@ -177,6 +186,7 @@ public class MainActivity extends BaseActivity {
         super.onDestroy();
 
         unregisterReceiver(talkReceiver);
+        unregisterReceiver(changePageReceiver);
     }
 
     @OnClick({R.id.layout_shouye,R.id.layout_dingdan,R.id.layout_xiaoxi,R.id.layout_geren})
@@ -254,7 +264,6 @@ public class MainActivity extends BaseActivity {
         private void processCustomMessage(Context context, Bundle bundle) {
             String title = bundle.getString(JPushInterface.EXTRA_TITLE);
             String message = bundle.getString(JPushInterface.EXTRA_MESSAGE);
-
         }
 
         private void receivingNotification(Context context, Bundle bundle){
@@ -276,9 +285,9 @@ public class MainActivity extends BaseActivity {
                         ||type.equals("2")){//抢单提示
 
                     final OrderMessage data = new OrderMessage();
-                    data.htmlStr = jsonObject.getString("htmlStr");
-                    data.messageId = jsonObject.getString("messageId");
-                    data.endTime = jsonObject.getString("endTime");
+                    data.htmlStr = jsonObject.optString("htmlStr");
+                    data.messageId = jsonObject.optString("messageId");
+                    data.endTime = jsonObject.optString("endTime");
                     data.msgType = type;
 
                     try {
@@ -298,7 +307,19 @@ public class MainActivity extends BaseActivity {
                 e.printStackTrace();
             }
         }
+    }
 
+    public class ChangePageReceiver extends BroadcastReceiver{
 
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final int page = intent.getIntExtra("page",0);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    changePage(page);
+                }
+            });
+        }
     }
 }

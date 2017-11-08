@@ -118,12 +118,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:layout_marginLeft="120dp"
+                    android:id="@+id/text_send_phone"
                     style="@style/defaultTextStyle"
-                    android:text="1214132453"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_send_phone" />
+                    android:layout_marginLeft="120dp"
+                    android:autoLink="phone"
+                    android:text="1214132453" />
 
                 <TextView
                     android:layout_below="@id/text_send_name"
@@ -194,12 +195,13 @@
                     android:layout_height="wrap_content" />
 
                 <TextView
-                    android:layout_marginLeft="120dp"
+                    android:id="@+id/text_receive_phone"
                     style="@style/defaultTextStyle"
-                    android:text="1214132453"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_receive_phone" />
+                    android:layout_marginLeft="120dp"
+                    android:autoLink="phone"
+                    android:text="1214132453" />
 
                 <TextView
                     android:layout_marginTop="15dp"

@@ -15,4 +15,7 @@ public class OrderMessage {
     public String msgType ;//true string 1代表收件，2代表派件
     public String partnerId;
     public String orderId;
+
+    public String isread;
+
 }

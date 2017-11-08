@@ -73,4 +73,7 @@ dependencies {
     compile 'cn.jiguang.sdk:jcore:1.1.2'
     // 此处以JCore 1.1.2 版本为例。
     compile files('libs/alipaySingle-20170510.jar')
+    compile 'com.contrarywind:Android-PickerView:3.2.5'
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
 }

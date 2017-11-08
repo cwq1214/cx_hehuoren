@@ -36,6 +36,7 @@ import com.jyt.baseapp.view.activity.PickUpOrderDetailActivity;
 import com.jyt.baseapp.view.activity.PostBalanceActivity;
 import com.jyt.baseapp.view.activity.SearchLocationActivity;
 import com.jyt.baseapp.view.activity.SelLocationActivity;
+import com.jyt.baseapp.view.activity.SelLocationActivity2;
 import com.jyt.baseapp.view.activity.SendOrderActivity;
 import com.jyt.baseapp.view.activity.SendOrderDetailActivity;
 import com.jyt.baseapp.view.activity.ShowLocationActivity;
@@ -80,6 +81,17 @@ public class IntentHelper {
     public static final String KEY_PAY_RESULT = "key_pay_result";
     public static final String KEY_START_PAGE = "key_start_page";
     public static final String KEY_EXIT = "key_exit";
+    public static final String KEY_EDIT_ADDRESS = "key_edit_address";
+    public static final String KEY_PROVINCE = "key_province";
+    public static final String KEY_CITY = "key_city";
+    public static final String KEY_DISTRICT = "key_district";
+    public static final String KEY_DETAIL = "key_detail";
+    public static final String KEY_PARTNERID = "KEY_PARTNERID";
+    public static final String KEY_PREPAYID = "KEY_PREPAYID";
+    public static final String KEY_TIMESTAMP = "KEY_TIMESTAMP";
+    public static final String KEY_SIGN = "KEY_SIGN";
+    public static final String KEY_PACKAGEVALUE = "KEY_PACKAGEVALUE";
+    public static final String KEY_NONCESTR = "KEY_NONCESTR";
 
     public static final int REQUIRE_CODE_SEARCH_LOCATION = 0;
     public static final int REQUIRE_CODE_SEL_LOCATION = 1;
@@ -124,6 +136,24 @@ public class IntentHelper {
             ((Activity) context).startActivityForResult(intent,REQUIRE_PAY);
         }
     }
+    //微信 支付 并 返回结果
+    public static void openPayActivityForResult_WeiXin(Context context,String partnerId,String prepayId,String timeStamp,String sign,String packageValue,String nonceStr,String name,String money,boolean autoPay){
+        Intent intent = getIntent(context, PayActivity.class);
+        intent.putExtra(IntentHelper.KEY_PARTNERID,partnerId);
+        intent.putExtra(IntentHelper.KEY_PREPAYID,prepayId);
+        intent.putExtra(IntentHelper.KEY_TIMESTAMP,timeStamp);
+        intent.putExtra(IntentHelper.KEY_SIGN,sign);
+        intent.putExtra(IntentHelper.KEY_PACKAGEVALUE,packageValue);
+        intent.putExtra(IntentHelper.KEY_NONCESTR,nonceStr);
+        intent.putExtra(IntentHelper.KEY_NAME,name);
+        intent.putExtra(IntentHelper.KEY_MONEY,money);
+        intent.putExtra(IntentHelper.KEY_AUTO_PAY,autoPay);
+        intent.putExtra(IntentHelper.KEY_PAY_TYPE,PayActivity.AUTO_PAY_WXP_AY);
+        if (context instanceof Activity){
+            ((Activity) context).startActivityForResult(intent,REQUIRE_PAY);
+        }
+    }
+
 
     //选择照片
     public static void openPickPhotoActivityForResult(Context context,int requestCode){
@@ -289,7 +319,7 @@ public class IntentHelper {
     }
 
     //编辑地址 派件人
-    public static void openEditSendAddressActivity(Context context,String name,String phone,String addressText,String lat,String lon,String orderId,String type){
+    public static void openEditSendAddressActivity(Context context,String name,String phone,String addressText,String lat,String lon,String orderId,String province,String city,String district,String detail,String type){
         Intent intent = getIntent(context, EditAddressActivity.class);
         intent.putExtra(KEY_NAME,name);
         intent.putExtra(KEY_PHONE,phone);
@@ -298,12 +328,16 @@ public class IntentHelper {
         intent.putExtra(KEY_LONGITUDE,lon);
         intent.putExtra(KEY_ORDER_ID,orderId);
         intent.putExtra(KEY_TYPE,type);
+        intent.putExtra(KEY_PROVINCE,province);
+        intent.putExtra(KEY_CITY,city);
+        intent.putExtra(KEY_DISTRICT,district);
+        intent.putExtra(KEY_DETAIL,detail);
         if (context instanceof Activity)
         ((Activity) context).startActivityForResult(intent,REQUIRE_CODE_EDIT_SEND_ADDRESS);
     }
 
     //编辑地址 收件人
-    public static void openEditReceiveAddressActivity(Context context,String name,String phone,String addressText,String lat,String lon,String orderId,String type){
+    public static void openEditReceiveAddressActivity(Context context,String name,String phone,String addressText,String lat,String lon,String orderId,String province,String city,String district,String detail,String type){
         Intent intent = getIntent(context, EditAddressActivity.class);
         intent.putExtra(KEY_NAME,name);
         intent.putExtra(KEY_PHONE,phone);
@@ -312,6 +346,10 @@ public class IntentHelper {
         intent.putExtra(KEY_LONGITUDE,lon);
         intent.putExtra(KEY_ORDER_ID,orderId);
         intent.putExtra(KEY_TYPE,type);
+        intent.putExtra(KEY_PROVINCE,province);
+        intent.putExtra(KEY_CITY,city);
+        intent.putExtra(KEY_DISTRICT,district);
+        intent.putExtra(KEY_DETAIL,detail);
         if (context instanceof Activity)
             ((Activity) context).startActivityForResult(intent,REQUIRE_CODE_EDIT_RECEIVE_ADDRESS);
     }
@@ -425,6 +463,21 @@ public class IntentHelper {
 
         }
         return photo;
+    }
+    //查看地址
+    public static void openBrowAddressActivity(){
+
+    }
+    //选址地址
+    public static void openSelAddressActivity(Context context,String province,String city,String district,String lat,String lon){
+        Intent intent = getIntent(context, SelLocationActivity2.class);
+        intent.putExtra(IntentHelper.KEY_LATITUDE,lat);
+        intent.putExtra(IntentHelper.KEY_LONGITUDE,lon);
+        intent.putExtra(IntentHelper.KEY_PROVINCE,province);
+        intent.putExtra(IntentHelper.KEY_CITY,city);
+        intent.putExtra(IntentHelper.KEY_DISTRICT,district);
+        intent.putExtra(IntentHelper.KEY_EDIT_ADDRESS,true);
+        ((Activity) context).startActivityForResult(intent,IntentHelper.REQUIRE_CODE_SEL_LOCATION);
     }
 
     //身份认证

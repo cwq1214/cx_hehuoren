@@ -7,4 +7,6 @@ package com.jyt.baseapp.entity;
 public class HomeMsgBox {
     public SystemMsg sys;
     public OrderMsg order;
+    public String countOrder;
+    public String countSys;
 }

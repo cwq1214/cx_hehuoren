@@ -19,6 +19,7 @@ import com.jyt.baseapp.R;
 import com.jyt.baseapp.util.DensityUtil;
 import com.jyt.baseapp.util.IntentHelper;
 import com.jyt.baseapp.util.ScreenUtils;
+import com.jyt.baseapp.util.SoftInputUtil;
 import com.jyt.baseapp.view.widget.RadioGroupEx;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by chenweiqi on 2017/6/5.
@@ -133,11 +135,6 @@ public class GoodsDetailActivity extends BaseActivity {
 
 
 
-
-
-
-
-
         textType.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -207,7 +204,44 @@ public class GoodsDetailActivity extends BaseActivity {
         textWeight.setText(currentWeight);
         textVolume.setText(currentVolume);
         inputMoney.setText(currentValue);
+        textType.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    textType.setText("");
+                    SoftInputUtil.showSoftKeyboard(getContext(),textType);
+                }
+            }
+        });
+        textWeight.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    textWeight.setText("");
+                    SoftInputUtil.showSoftKeyboard(getContext(),textWeight);
+                }
+            }
+        });
+        textVolume.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    textVolume.setText("");
+                    SoftInputUtil.showSoftKeyboard(getContext(),textVolume);
+                }
+            }
+        });
+        inputMoney.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    inputMoney.setText("");
+                    SoftInputUtil.showSoftKeyboard(getContext(),inputMoney);
+                }
+            }
+        });
     }
+
 
     @Override
     public void onFunctionClick() {

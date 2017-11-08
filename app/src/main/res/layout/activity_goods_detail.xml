@@ -32,6 +32,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:background="@null"
+                    android:gravity="right"
+                    android:minWidth="50dp"
                     android:singleLine="true"
                     android:textColor="@color/colorPrimary"
                     android:textSize="14sp" />
@@ -72,6 +74,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:gravity="right"
+                        android:minWidth="50dp"
                         android:singleLine="true"
                         android:textColor="@color/colorPrimary"
                         android:textSize="14sp" />
@@ -120,6 +124,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@null"
+                        android:gravity="right"
+                        android:minWidth="50dp"
                         android:singleLine="true"
                         android:textColor="@color/colorPrimary"
                         android:textSize="14sp" />
@@ -162,18 +168,18 @@
 
 
                 <EditText
-                    android:singleLine="true"
-                    android:textColorHint="@color/colorPrimary"
-                    android:textColor="@color/colorPrimary"
-                    android:background="@null"
-                    android:layout_alignParentRight="true"
                     android:id="@+id/input_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
-                    android:minWidth="50dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@null"
                     android:hint="点击输入"
-                    android:inputType="numberDecimal" />
+                    android:inputType="numberDecimal"
+                    android:minWidth="50dp"
+                    android:singleLine="true"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorPrimary"
+                    android:textSize="15sp" />
                 <TextView
                     android:layout_toLeftOf="@id/input_money"
                     android:textColor="@color/colorPrimary"

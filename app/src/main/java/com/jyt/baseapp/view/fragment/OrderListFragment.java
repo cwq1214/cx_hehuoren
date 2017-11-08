@@ -1,5 +1,9 @@
 package com.jyt.baseapp.view.fragment;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -52,7 +56,7 @@ public class OrderListFragment extends BaseFragment {
 
 
     private int type=-1;
-
+    RefreshBoardCast boardCast = new RefreshBoardCast();
     OrderListAdapter adapter;
     @Override
     public int getLayoutId() {
@@ -66,6 +70,10 @@ public class OrderListFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        if (boardCast!=null)
+            getActivity().registerReceiver(boardCast,new IntentFilter("ACTION_REFRESH"));
+
         recyclerview.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
         dividerItemDecoration.setDrawable(getResources().getDrawable(R.drawable.divider_rcv));
@@ -120,6 +128,13 @@ public class OrderListFragment extends BaseFragment {
         });
 
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (boardCast!=null)
+            getActivity().unregisterReceiver(boardCast);
     }
 
     @Override
@@ -190,6 +205,15 @@ public class OrderListFragment extends BaseFragment {
                 Http.getPickUpList(getContext(),"1",callback);
                 break;
 
+        }
+    }
+
+
+    public class RefreshBoardCast extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            refresh();
         }
     }
 }

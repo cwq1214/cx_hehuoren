@@ -64,20 +64,43 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/layout_xiaoxi">
-            <ImageView
-                android:src="@mipmap/common_tab_msg_n"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:id="@+id/img_xiaoxi" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:src="@mipmap/common_tab_msg_n"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:id="@+id/img_xiaoxi" />
+                    <TextView
+                        android:text="消息"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:contextClickable="true"
+                        android:textColor="@color/disableColor"
+                        android:id="@+id/text_xiaoxi" />
+                </LinearLayout>
 
-            <TextView
-                android:text="消息"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:contextClickable="true"
-                android:textColor="@color/disableColor"
-                android:id="@+id/text_xiaoxi" />
+                <TextView
+                    android:id="@+id/text_msgCount"
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|center"
+                    android:layout_marginLeft="10dp"
+                    android:background="@drawable/bg_red_pop"
+                    android:gravity="center"
+                    android:text="99+"
+                    android:textColor="@color/white"
+                    android:textSize="6sp"
+                    android:visibility="visible" />
+            </FrameLayout>
+
 
         </LinearLayout>
         <LinearLayout

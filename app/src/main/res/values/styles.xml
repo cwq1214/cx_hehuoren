@@ -17,6 +17,11 @@
         <item name="android:windowBackground">@color/transparent</item>
     </style>
 
+    <style name="AnimBottomInOut" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
+    
     <style name="defaultBtn">
         <item name="android:gravity">center</item>
         <item name="android:paddingTop">15dp</item>
@@ -40,5 +45,15 @@
         <item name="android:button">@null</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:paddingBottom">10dp</item>
+    </style>
+
+    <!-- Navigation Header -->
+    <style name="NavPage">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <!-- <item name="android:background">@drawable/nav_page</item> -->
+        <item name="android:background">#FFE1E8EB</item>
     </style>
 </resources>

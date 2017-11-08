@@ -64,8 +64,15 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getBannerContent();
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (bannerView.getItemCount()==0){
+            getBannerContent();
+        }
     }
 
     private void getBannerContent() {

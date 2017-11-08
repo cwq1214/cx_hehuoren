@@ -25,6 +25,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="14sp" />
         </LinearLayout>
+
         <LinearLayout
             android:padding="15dp"
             android:background="@color/white"
@@ -35,47 +36,85 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/defaultTextStyle" />
+
             <EditText
                 android:id="@+id/input_contract"
-                android:background="@null"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
+                android:inputType="phone"
                 android:textSize="14sp" />
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_selPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="15dp">
+
+            <TextView
+                style="@style/defaultTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="所在地区：" />
+
+            <TextView
+                android:id="@+id/text_place"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/arrow" />
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/layout_selAddress"
-            android:padding="15dp"
-            android:background="@color/white"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@+id/btn_getLocation">
+
                 <TextView
-                    android:text="地址："
+                    style="@style/defaultTextStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/defaultTextStyle" />
+                    android:text="详细地址：" />
+
                 <EditText
-                    android:text="123"
-                    android:layout_weight="1"
-                    android:background="@null"
                     android:id="@+id/text_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:singleLine="true"
-                    android:elegantTextHeight="true"
                     android:layout_marginRight="16dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:elegantTextHeight="true"
+                    android:singleLine="false"
+                    android:text="123"
                     android:textSize="14sp" />
             </LinearLayout>
 
             <ImageView
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:src="@mipmap/sjorderdetails_icon_locate_n"
+                android:id="@+id/btn_getLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_getLocation" />
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:padding="15dp"
+                android:src="@mipmap/sjorderdetails_icon_locate_n" />
         </RelativeLayout>
     </LinearLayout>
 

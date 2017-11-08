@@ -48,32 +48,33 @@ public class OrderListItemViewHolder extends BaseViewHolder {
 
         }
 
+        textState.setText(order.receiveStateMsg);
 
-        switch (order.type){
-            case OrderListFragment.TYPE_SEND_DOING:
-                textState.setText("派件中");
-                break;
-            case OrderListFragment.TYPE_SEND_FAILED:
-                textState.setTextColor(Color.parseColor("#FF4F4F"));
-                textState.setText("派件失败");
-                break;
-            case OrderListFragment.TYPE_SEND_FINISH:
-                textState.setText("已完成");
-
-                break;
-            case OrderListFragment.TYPE_PICKUP_READY:
-                textState.setText("待收件");
-                break;
-            case OrderListFragment.TYPE_PICKUP_CANCEL:
-                textState.setText("已取消");
-                break;
-            case OrderListFragment.TYPE_PICKUP_DOING:
-                textState.setText("进行中");
-                break;
-            case OrderListFragment.TYPE_PICKUP_FINISH:
-                textState.setText("已完成");
-                break;
-        }
+//        switch (order.type){
+//            case OrderListFragment.TYPE_SEND_DOING:
+//                textState.setText("派件中");
+//                break;
+//            case OrderListFragment.TYPE_SEND_FAILED:
+//                textState.setTextColor(Color.parseColor("#FF4F4F"));
+//                textState.setText("派件失败");
+//                break;
+//            case OrderListFragment.TYPE_SEND_FINISH:
+//                textState.setText("已完成");
+//
+//                break;
+//            case OrderListFragment.TYPE_PICKUP_READY:
+//                textState.setText("待收件");
+//                break;
+//            case OrderListFragment.TYPE_PICKUP_CANCEL:
+//                textState.setText("已取消");
+//                break;
+//            case OrderListFragment.TYPE_PICKUP_DOING:
+//                textState.setText("进行中");
+//                break;
+//            case OrderListFragment.TYPE_PICKUP_FINISH:
+//                textState.setText("已完成");
+//                break;
+//        }
 
 
     }

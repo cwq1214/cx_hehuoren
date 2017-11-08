@@ -38,5 +38,18 @@ public class PickUpOrderDetailResult {
     public String expressId;
     public String receiveState ;//true string 1已经给了服务费，待收件，2待支付运费，3正在配送至中转中心，4已完成，5订单被抢，等待服务，6达到中专中心
 
+    public String province;
+    public String city;
+    public String district;
+    public String detail;
+
+
+    public String rec_province;
+    public String rec_city;
+    public String rec_district;
+    public String rec_detail;
+    public String rec_longitude;
+    public String rec_latitude;
+
 
 }

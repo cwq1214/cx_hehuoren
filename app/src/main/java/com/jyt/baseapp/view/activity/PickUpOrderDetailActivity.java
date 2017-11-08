@@ -1,5 +1,7 @@
 package com.jyt.baseapp.view.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -201,7 +203,11 @@ public class PickUpOrderDetailActivity extends BaseActivity {
                         String name = textSendName.getText().toString();
                         String phone = textSendPhone.getText().toString();
                         String address = textAddress.getText().toString();
-                        IntentHelper.openEditSendAddressActivity(getContext(),name,phone,address,pickUpOrderDetailResult.latitude,pickUpOrderDetailResult.longitude,pickUpOrderDetailResult.orderId,"2");
+                        String province = pickUpOrderDetailResult.province;
+                        String city = pickUpOrderDetailResult.city;
+                        String district = pickUpOrderDetailResult.district;
+                        String detail = pickUpOrderDetailResult.detail;
+                        IntentHelper.openEditSendAddressActivity(getContext(),name,phone,address,pickUpOrderDetailResult.latitude,pickUpOrderDetailResult.longitude,pickUpOrderDetailResult.orderId,province,city,district,detail,"2");
                     }
                 });
                 layoutReceive.setOnClickListener(new View.OnClickListener() {
@@ -210,7 +216,11 @@ public class PickUpOrderDetailActivity extends BaseActivity {
                         String name = textReceiveName.getText().toString();
                         String phone = textReceivePhone.getText().toString();
                         String address = textReceiveAddress.getText().toString();
-                        IntentHelper.openEditReceiveAddressActivity(getContext(),name,phone,address,null,null,pickUpOrderDetailResult.orderId,"1");
+                        String province = pickUpOrderDetailResult.rec_province;
+                        String city = pickUpOrderDetailResult.rec_city;
+                        String district = pickUpOrderDetailResult.rec_district;
+                        String detail = pickUpOrderDetailResult.rec_detail;
+                        IntentHelper.openEditReceiveAddressActivity(getContext(),name,phone,address,pickUpOrderDetailResult.rec_latitude,pickUpOrderDetailResult.rec_longitude,pickUpOrderDetailResult.orderId,province,city,district,detail,"1");
                     }
                 });
                 layoutGoodsDetail.setOnClickListener(new View.OnClickListener() {
@@ -366,10 +376,15 @@ public class PickUpOrderDetailActivity extends BaseActivity {
     //导航
     @OnClick(R.id.btn_navigation)
     public void onNavigationClick(){
+
         NaviParaOption para = new NaviParaOption()
                 .startPoint(new LatLng(App.getLocation().getLatitude(),App.getLocation().getLongitude()))
                 .endPoint(new LatLng(Double.valueOf(pickUpOrderDetailResult.latitude),Double.valueOf(pickUpOrderDetailResult.longitude)));
-        BaiduMapNavigation.openWebBaiduMapNavi(para, getContext());
+        try {
+            BaiduMapNavigation.openBaiduMapNavi(para, getContext());
+        }catch (Exception e){
+            BaiduMapNavigation.openWebBaiduMapNavi(para, getContext());
+        }
     }
 
     private void getTrackOrder(){
@@ -397,10 +412,20 @@ public class PickUpOrderDetailActivity extends BaseActivity {
             textSendPhone.setText(data.getStringExtra(IntentHelper.KEY_PHONE));
             pickUpOrderDetailResult.longitude = data.getStringExtra(IntentHelper.KEY_LONGITUDE);
             pickUpOrderDetailResult.latitude = data.getStringExtra(IntentHelper.KEY_LATITUDE);
+            pickUpOrderDetailResult.province = data.getStringExtra(IntentHelper.KEY_PROVINCE);
+            pickUpOrderDetailResult.city = data.getStringExtra(IntentHelper.KEY_CITY);
+            pickUpOrderDetailResult.district = data.getStringExtra(IntentHelper.KEY_DISTRICT);
+            pickUpOrderDetailResult.detail = data.getStringExtra(IntentHelper.KEY_DETAIL);
         }else if (requestCode==IntentHelper.REQUIRE_CODE_EDIT_RECEIVE_ADDRESS && resultCode == RESULT_OK){
             textReceiveAddress.setText(data.getStringExtra(IntentHelper.KEY_ADDRESS));
             textReceiveName.setText(data.getStringExtra(IntentHelper.KEY_NAME));
             textReceivePhone.setText(data.getStringExtra(IntentHelper.KEY_PHONE));
+            pickUpOrderDetailResult.rec_longitude = data.getStringExtra(IntentHelper.KEY_LONGITUDE);
+            pickUpOrderDetailResult.rec_latitude = data.getStringExtra(IntentHelper.KEY_LATITUDE);
+            pickUpOrderDetailResult.rec_province = data.getStringExtra(IntentHelper.KEY_PROVINCE);
+            pickUpOrderDetailResult.rec_city = data.getStringExtra(IntentHelper.KEY_CITY);
+            pickUpOrderDetailResult.rec_district = data.getStringExtra(IntentHelper.KEY_DISTRICT);
+            pickUpOrderDetailResult.rec_detail = data.getStringExtra(IntentHelper.KEY_DETAIL);
         }else if (requestCode == IntentHelper.REQUIRE_CODE_EDIT_ORDER_PAY_INFO && resultCode == RESULT_OK ){
             textPayType.setText(data.getStringExtra(IntentHelper.KEY_PAY_TYPE));
             textKeepValue.setText(data.getStringExtra(IntentHelper.KEY_KEEP_VALUE));
@@ -429,6 +454,7 @@ public class PickUpOrderDetailActivity extends BaseActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    T.showShort(getContext(),"扫描成功");
                                     textIdCard.setText(idCard);
                                 }
                             });
@@ -503,5 +529,28 @@ public class PickUpOrderDetailActivity extends BaseActivity {
                         }
                     }
                 });
+    }
+
+
+    @Override
+    public void onBtnBackClick() {
+        new AlertDialog.Builder(getContext()).setMessage("确定要退出吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
+    }
+
+    @Override
+    public void onBackPressed() {
+        onBtnBackClick();
     }
 }

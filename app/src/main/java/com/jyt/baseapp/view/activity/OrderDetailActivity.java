@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.jyt.baseapp.R;
 import com.jyt.baseapp.api.Http;
 import com.jyt.baseapp.util.IntentHelper;
+import com.jyt.baseapp.util.SoftInputUtil;
 
 import butterknife.BindView;
 
@@ -158,6 +159,16 @@ public class OrderDetailActivity extends BaseActivity {
         textPayType.setText(payType);
         textCompany.setText(company);
         inputCost.setText(cost);
+
+        inputCost.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus){
+                    inputCost.setText("");
+                    SoftInputUtil.showSoftKeyboard(getContext(),inputCost);
+                }
+            }
+        });
     }
 
 

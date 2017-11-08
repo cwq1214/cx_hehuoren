@@ -13,6 +13,6 @@ public class Order {
     public String createdTime;// true string 创建时间
     public String trackingNo ;//true string 运单号
     public String expressCompany ;//true string 快递公司名称
-
+    public String receiveStateMsg;
     public int type;
 }

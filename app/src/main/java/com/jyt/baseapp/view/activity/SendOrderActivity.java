@@ -1,5 +1,7 @@
 package com.jyt.baseapp.view.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.icu.util.Output;
@@ -462,4 +464,24 @@ public class SendOrderActivity extends BaseActivity {
     }
 
 
+    @Override
+    public void onBtnBackClick() {
+        new AlertDialog.Builder(getContext()).setMessage("确定要退出吗？").setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();    }
+
+    @Override
+    public void onBackPressed() {
+        onBtnBackClick();
+    }
 }

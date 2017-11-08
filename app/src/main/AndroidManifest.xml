@@ -92,6 +92,12 @@
         <activity android:name=".view.activity.MessageListActivity" android:screenOrientation="portrait" android:label="消息列表"></activity>
         <activity android:name=".view.activity.IdentificationActivity" android:screenOrientation="portrait" android:label="身份认证"></activity>
         <activity android:name=".view.activity.PayActivity" android:screenOrientation="portrait" android:label="支付"></activity>
+        <activity android:name=".view.activity.SelLocationActivity2" android:screenOrientation="portrait" android:label="定位"></activity>
+
+        <activity android:name="com.ccd.hehuoren.wxapi.WXPayEntryActivity"       android:exported="true"
+            android:launchMode="singleTop">
+
+        </activity>
         <!--百度地图 定位-->
         <service
             android:name="com.baidu.location.f"
